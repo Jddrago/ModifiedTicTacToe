@@ -58,6 +58,7 @@ public class Board extends AppCompatActivity {
             if(!checkForWin() && checkTie() < 9) {
                 if (currentPlayer == pieces.get(0)) {
                     currentPlayer = pieces.get(1);
+                    ComputersTurn();
                 } else {
                     currentPlayer = pieces.get(0);
                 }
@@ -76,6 +77,39 @@ public class Board extends AppCompatActivity {
             }
         }
         ((TextView)findViewById(R.id.textView3)).setText(currentPlayer.name + "'s turn");
+    }
+
+    public void ComputersTurn(){
+        Log.i("Computers:","turn");
+        int compsChoice = currentPlayer.chooseLocation();
+        boolean validSelection = false;
+        while(!validSelection) {
+            Log.i("Computers selection:", compsChoice + "");
+            if (Integer.parseInt(images[compsChoice].getTag().toString()) == R.drawable.blank) {
+                images[compsChoice].setImageResource(currentPlayer.imageID);
+                images[compsChoice].setTag(currentPlayer.imageID);
+                validSelection = true;
+            }
+            else{
+                compsChoice = currentPlayer.chooseLocation();
+            }
+        }
+
+        if(!checkForWin() && checkTie() < 9) {
+            currentPlayer = pieces.get(0);
+        }
+        else{
+            if(checkForWin()){
+                Intent intent = new Intent(this, WinScreen.class);
+                intent.putExtra("winner",  currentPlayer.name + " wins");
+                startActivity(intent);
+            }
+            else {
+                Intent intent = new Intent(this, WinScreen.class);
+                intent.putExtra("winner","It's a tie");
+                startActivity(intent);
+            }
+        }
     }
 
     public boolean checkForWin(){

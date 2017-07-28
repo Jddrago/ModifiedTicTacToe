@@ -25,9 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sharedPreferences = this.getSharedPreferences("com.example.jason.tictactoe", Context.MODE_PRIVATE);
-        pieces.add(new GamePiece());
-        pieces.add(new GamePiece());
-        Log.i("Player names",pieces.get(0).name + "/" + pieces.get(1).name);
+        pieces.add(new Player());
         (findViewById(R.id.imageView)).setTag(R.drawable.x);
         (findViewById(R.id.imageView2)).setTag(R.drawable.o);
         (findViewById(R.id.imageView3)).setTag(R.drawable.y);
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     public void OnClick(View view){
         ImageView image = (ImageView)view;
         Log.i("Image","image clicked");
-        if(!player1Selected) {
             if (Integer.parseInt(image.getTag().toString()) == R.drawable.x) {
                 pieces.get(0).imageID = R.drawable.x;
             } else if (Integer.parseInt(image.getTag().toString()) == R.drawable.o) {
@@ -46,25 +43,13 @@ public class MainActivity extends AppCompatActivity {
             }
             player1Selected = true;
             Log.i("player 1 selected", pieces.get(0).imageID + "");
-        }
-        else{
-            if (Integer.parseInt(image.getTag().toString()) == R.drawable.x && Integer.parseInt(image.getTag().toString()) != pieces.get(0).imageID) {
-                pieces.get(1).imageID = R.drawable.x;
-            } else if (Integer.parseInt(image.getTag().toString()) == R.drawable.o && Integer.parseInt(image.getTag().toString()) != pieces.get(0).imageID) {
-                pieces.get(1).imageID = R.drawable.o;
-            } else if (Integer.parseInt(image.getTag().toString()) == R.drawable.y && Integer.parseInt(image.getTag().toString()) != pieces.get(0).imageID) {
-                pieces.get(1).imageID = R.drawable.y;
-            }
-            else{
-                Toast.makeText(getApplicationContext(),"That piece has already been selected.",Toast.LENGTH_SHORT).show();
-            }
+            pieces.add(1,new Computer(pieces.get(0).imageID));
             Log.i("player 2 selected", pieces.get(1).imageID + "");
-        }
     }
 
     public void Ready(View view){
         pieces.get(0).name = ((EditText)findViewById(R.id.player1Name)).getText().toString();
-        pieces.get(1).name = ((EditText)findViewById(R.id.player2Name)).getText().toString();
+        //pieces.get(1).name = ((EditText)findViewById(R.id.player2Name)).getText().toString();
         try {
             sharedPreferences.edit().putString("game",ObjectSerializer.serialize(pieces)).apply();
             sharedPreferences.edit().commit();

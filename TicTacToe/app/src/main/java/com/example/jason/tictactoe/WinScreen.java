@@ -18,13 +18,12 @@ public class WinScreen extends AppCompatActivity {
     }
 
     public void onClick(View view){
-        Button button = (Button)view;
-        if(button.getText().equals("Yes")){
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-        }
-        else{
-            Toast.makeText(getApplicationContext(),"That's too bad.",Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void endGame(View view){
+        finishAffinity();
+        System.exit(0);
     }
 }
