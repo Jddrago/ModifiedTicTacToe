@@ -3,6 +3,7 @@ package com.example.jason.tictactoe;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,13 +34,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void OnClick(View view){
         ImageView image = (ImageView)view;
+        (findViewById(R.id.imageView)).setBackgroundColor(Color.WHITE);
+        (findViewById(R.id.imageView2)).setBackgroundColor(Color.WHITE);
+        (findViewById(R.id.imageView3)).setBackgroundColor(Color.WHITE);
         Log.i("Image","image clicked");
             if (Integer.parseInt(image.getTag().toString()) == R.drawable.x) {
-                pieces.get(0).imageID = R.drawable.x;
-            } else if (Integer.parseInt(image.getTag().toString()) == R.drawable.o) {
+                image.setPadding(1,1,1,1);
+                image.setBackgroundColor(Color.BLACK);
                 pieces.get(0).imageID = R.drawable.o;
+            } else if (Integer.parseInt(image.getTag().toString()) == R.drawable.o) {
+                pieces.get(0).imageID = R.drawable.x;
+                image.setPadding(1,1,1,1);
+                image.setBackgroundColor(Color.BLACK);
             } else if (Integer.parseInt(image.getTag().toString()) == R.drawable.y) {
                 pieces.get(0).imageID = R.drawable.y;
+                image.setPadding(1,1,1,1);
+                image.setBackgroundColor(Color.BLACK);
             }
             player1Selected = true;
             Log.i("player 1 selected", pieces.get(0).imageID + "");

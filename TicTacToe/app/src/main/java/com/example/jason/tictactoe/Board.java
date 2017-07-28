@@ -3,6 +3,7 @@ package com.example.jason.tictactoe;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -48,6 +49,7 @@ public class Board extends AppCompatActivity {
         }
         currentPlayer = pieces.get(0);
         ((TextView)findViewById(R.id.textView3)).setText(currentPlayer.name + "'s turn");
+        ((ImageView)findViewById(R.id.playerPiece)).setImageResource(currentPlayer.imageID);
     }
 
     public void onClick(View view){
@@ -77,10 +79,18 @@ public class Board extends AppCompatActivity {
             }
         }
         ((TextView)findViewById(R.id.textView3)).setText(currentPlayer.name + "'s turn");
+        ((ImageView)findViewById(R.id.playerPiece)).setImageResource(currentPlayer.imageID);
     }
 
     public void ComputersTurn(){
         Log.i("Computers:","turn");
+        ((TextView)findViewById(R.id.textView3)).setText(currentPlayer.name + "'s turn");
+        ((ImageView)findViewById(R.id.playerPiece)).setImageResource(currentPlayer.imageID);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         int compsChoice = currentPlayer.chooseLocation();
         boolean validSelection = false;
         while(!validSelection) {

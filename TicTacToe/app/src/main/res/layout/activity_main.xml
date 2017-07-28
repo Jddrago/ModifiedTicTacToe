@@ -48,26 +48,28 @@
         android:id="@+id/imageView"
         android:layout_width="108dp"
         android:layout_height="108dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="344dp"
         android:onClick="OnClick"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/o"
-        app:layout_constraintRight_toLeftOf="@+id/imageView3"
+        android:scaleType="fitCenter"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toRightOf="@+id/imageView2"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintHorizontal_bias="1.0" />
+        app:layout_constraintRight_toLeftOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/o" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="108dp"
         android:layout_height="108dp"
-        android:onClick="OnClick"
-        app:srcCompat="@drawable/x"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="344dp"
         android:layout_marginLeft="25dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginTop="344dp"
+        android:onClick="OnClick"
+        android:scaleType="fitCenter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/x" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -76,6 +78,7 @@
         android:layout_marginRight="39dp"
         android:layout_marginTop="344dp"
         android:onClick="OnClick"
+        android:scaleType="fitCenter"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/y" />
